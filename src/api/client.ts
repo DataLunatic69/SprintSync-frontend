@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { toast } from 'react-hot-toast';
 
-const API_URL = 'http://127.0.0.1:8000/';
+const API_URL = "https://sprintsync-backend-c7il.onrender.com";
 
 export const apiClient = axios.create({
   baseURL: API_URL,
