@@ -1,11 +1,11 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import { toast } from 'react-hot-toast';
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = 'http://127.0.0.1:8000/';
 
 export const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
