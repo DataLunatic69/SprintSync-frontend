@@ -1,1 +1,54 @@
-/* Button styles */
+.button {
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .primary {
+    background: var(--primary);
+    color: var(--white);
+  }
+  
+  .primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+  }
+  
+  .secondary {
+    background: var(--secondary);
+    color: var(--white);
+  }
+  
+  .danger {
+    background: var(--danger);
+    color: var(--white);
+  }
+  
+  .sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 14px;
+  }
+  
+  .md {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 16px;
+  }
+  
+  .lg {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 18px;
+  }
+  
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .loading {
+    cursor: wait;
+  }
