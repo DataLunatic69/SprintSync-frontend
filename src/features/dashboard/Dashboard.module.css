@@ -1,24 +1,409 @@
 .container {
-    min-height: 100vh;
-    background: var(--light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.title {
+  color: var(--dark);
+  font-size: 32px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--secondary);
+  margin-top: var(--spacing-xs);
+  font-size: 16px;
+}
+
+.newTaskBtn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.newTaskBtn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.statCard {
+  background: var(--white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  transition: transform 0.2s ease;
+  border-left: 4px solid;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.statTotal { border-left-color: var(--primary); }
+.statTodo { border-left-color: var(--secondary); }
+.statProgress { border-left-color: #3b82f6; }
+.statDone { border-left-color: var(--success); }
+
+.statIcon {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--light);
+  border-radius: var(--radius-md);
+}
+
+.statContent h3 {
+  color: var(--secondary);
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 0 0 var(--spacing-xs) 0;
+  font-weight: 500;
+}
+
+.statNumber {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--dark);
+  margin: 0;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.leftColumn, .rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.card {
+  background: var(--white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.cardTitle {
+  color: var(--dark);
+  font-size: 18px;
+  margin: 0 0 var(--spacing-md) 0;
+  font-weight: 600;
+}
+
+.viewAllBtn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.viewAllBtn:hover {
+  color: var(--primary-dark);
+}
+
+/* Progress Circle */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.progressCircle {
+  width: 120px;
+  height: 120px;
+}
+
+.progressCircle svg {
+  transform: rotate(-90deg);
+}
+
+.circleBackground {
+  fill: none;
+  stroke: var(--light);
+  stroke-width: 3;
+}
+
+.circleProgress {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: progressAnimation 1s ease;
+}
+
+@keyframes progressAnimation {
+  from { stroke-dasharray: 0, 100; }
+}
+
+.percentage {
+  fill: var(--dark);
+  font-size: 0.5em;
+  font-weight: bold;
+  text-anchor: middle;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.progressStats {
+  flex: 1;
+}
+
+.progressStats p {
+  margin: var(--spacing-sm) 0;
+  color: var(--secondary);
+}
+
+.timeSpent {
+  font-size: 14px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Activity Chart */
+.activityChart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 150px;
+  padding-top: var(--spacing-md);
+}
+
+.dayColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.barContainer {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.bar {
+  width: 70%;
+  background: linear-gradient(to top, var(--primary), #93c5fd);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  margin: 0 auto;
+  min-height: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.bar.today {
+  background: linear-gradient(to top, var(--primary-dark), var(--primary));
+}
+
+.bar:hover {
+  transform: scaleY(1.05);
+}
+
+.barValue {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.dayLabel {
+  font-size: 12px;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+/* Recent Tasks */
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--light);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.taskItem:hover {
+  background: #f1f5f9;
+  transform: translateX(4px);
+}
+
+.taskInfo h4 {
+  margin: 0 0 var(--spacing-xs) 0;
+  color: var(--dark);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.taskDescription {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+}
+
+.taskStatus {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.statusTodo {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.statusProgress {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.statusDone {
+  background: #dcfce7;
+  color: #22c55e;
+}
+
+/* Quick Actions */
+.quickActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.actionButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: var(--light);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.actionIcon {
+  font-size: 24px;
+}
+
+.emptyState {
+  text-align: center;
+  color: var(--secondary);
+  padding: var(--spacing-xl);
+  background: var(--light);
+  border-radius: var(--radius-md);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
   }
   
-  .header {
-    background: var(--white);
-    padding: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .welcome {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
   }
   
-  .content {
-    padding: var(--spacing-lg);
+  .statsGrid {
+    grid-template-columns: 1fr;
   }
   
-  .card {
-    background: var(--white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+  .progressContainer {
+    flex-direction: column;
   }
+  
+  .quickActions {
+    grid-template-columns: 1fr;
+  }
+}
